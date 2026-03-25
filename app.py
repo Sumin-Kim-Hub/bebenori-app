@@ -629,7 +629,7 @@ def get_llm():
     try:
         from openai import OpenAI
         return OpenAI(
-            base_url="https://api-inference.huggingface.co/v1/",
+            base_url="https://router.huggingface.co/hf-inference/v1",
             api_key=HF_TOKEN,
         )
     except ImportError:
