@@ -128,19 +128,17 @@ html, body, [class*="css"] {{
 
 /* ── 히어로 헤더 ───────────────────────────────────────── */
 .bebe-hero {{
-    /* 로고 대신 패턴 이미지(PATTERN_B64)를 배경으로 사용합니다 */
-    background-image: url('{PATTERN_B64}');
-    background-repeat: repeat;   /* 패턴이 끊기지 않고 반복되게 */
-    background-size: 150px;      /* 패턴의 크기를 적절하게 조절 (숫자를 키우면 패턴이 커져요) */
-    background-color: #FDFBF0;   /* 이미지가 뜨기 전 기본 배경색 */
-    
+    /* 놀이터 로고를 배경으로 넣고 살짝 밝게 처리했습니다 */
+    background-image: linear-gradient(rgba(255,255,255,0.4), rgba(255,255,255,0.4)), url('{LOGO_B64}');
+    background-size: cover;      /* 네모 칸에 이미지가 꽉 차게 */
+    background-position: center; /* 이미지의 정중앙이 보이게 */
     border-radius: 0 0 52px 52px;
-    padding: 45px 36px;
+    padding: 50px 36px;          /* 글씨가 배경에 묻히지 않게 여백을 늘렸어요 */
     margin: -1rem -1rem 0;
     box-shadow: 0 8px 28px rgba(100,150,80,.15);
     display: flex; 
     align-items: center; 
-    justify-content: center;
+    justify-content: center;     /* 글씨를 가운데로 */
     gap: 26px;
     border-bottom: 2px dashed #C5E1A5;
     position: relative; 
