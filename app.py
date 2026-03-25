@@ -640,25 +640,25 @@ def get_chroma(df: pd.DataFrame):
 def get_llm():
     try:
         from openai import OpenAI
-        api_key = st.secrets.get("HF_TOKEN", "")
-        return OpenAI(
-            base_url="https://api-inference.huggingface.co/v1",
-            api_key=api_key,
-        )
+        # Secrets에 저장한 OpenAI 전용 키를 불러옵니다.
+        api_key = st.secrets.get("OPENAI_API_KEY", "")
+        
+        # base_url을 지우면 자동으로 OpenAI 정식 API로 연결됩니다.
+        return OpenAI(api_key=api_key)
     except Exception:
         return None
 
 
 def llm_chat(client, messages: list, max_tokens: int = 400) -> str:
     if client is None or not client.api_key:
-        return "AI 클라이언트 초기화 실패. Secrets에 HF_TOKEN이 있는지 확인해 주세요! 🌸"
+        return "AI 클라이언트 초기화 실패. Secrets에 OPENAI_API_KEY를 확인해 주세요! 🌸"
     try:
         r = client.chat.completions.create(
-            # 3. 모델 이름 재확인 (v0.2가 유료 전용으로 바뀌었을 수 있으니 v0.3이나 대체 모델 추천)
-            model="mistralai/Mistral-7B-Instruct-v0.3", 
+            # 기획안에 적힌 가성비 만점 모델 gpt-4o-mini로 변경!
+            model="gpt-4o-mini", 
             messages=messages,
             max_tokens=max_tokens,
-            temperature=0.7,
+            temperature=0.72,
         )
         return r.choices[0].message.content.strip()
     except Exception as e:
@@ -1267,7 +1267,7 @@ st.markdown(f"""
   📗 경기도육아종합지원센터 영유아 발달지원 가이드북 2023-13호 (지연님 데이터)<br>
   📘 초보아빠를위한육아가이드(배포용)_.pdf (Colab 업로드 후 RAG 확장 가능)<br>
   🗄 ChromaDB PersistentClient ({CHROMA_DIR}) + paraphrase-multilingual-MiniLM-L12-v2<br>
-  🤖 LLM: Qwen/Qwen2.5-72B-Instruct via HuggingFace Inference API (openai 라이브러리)<br>
+  🤖 LLM: GPT-4o-mini (OpenAI 정식 API 연동)
   <span style="color:#81C784">♥ 광고 없이 진심만 담았어요 — 팀 2모3촌</span>
 </div>
 """, unsafe_allow_html=True)
