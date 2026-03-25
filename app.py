@@ -127,19 +127,23 @@ html, body, [class*="css"] {{
 [data-testid="stSidebar"] .stRadio label {{ font-weight: 800 !important; }}
 
 /* ── 히어로 헤더 ───────────────────────────────────────── */
-.bebe-hero {
-    /* 이미지를 배경으로 넣고, 글씨가 잘 보이게 하얀색 필터를 살짝 깔았어요 */
+.bebe-hero {{
+    /* 놀이터 로고를 배경으로 넣고 살짝 밝게 처리했습니다 */
     background-image: linear-gradient(rgba(255,255,255,0.4), rgba(255,255,255,0.4)), url('{LOGO_B64}');
-    background-size: cover;      /* 이미지가 칸에 꽉 차게 */
-    background-position: center; /* 이미지 중앙 맞춤 */
+    background-size: cover;      /* 네모 칸에 이미지가 꽉 차게 */
+    background-position: center; /* 이미지의 정중앙이 보이게 */
     border-radius: 0 0 52px 52px;
-    padding: 50px 36px;
+    padding: 50px 36px;          /* 글씨가 배경에 묻히지 않게 여백을 늘렸어요 */
     margin: -1rem -1rem 0;
     box-shadow: 0 8px 28px rgba(100,150,80,.15);
-    display: flex; align-items: center; justify-content: center; gap: 26px;
+    display: flex; 
+    align-items: center; 
+    justify-content: center;     /* 글씨를 가운데로 */
+    gap: 26px;
     border-bottom: 2px dashed #C5E1A5;
-    position: relative; overflow: hidden;
-}
+    position: relative; 
+    overflow: hidden;
+}}
 .bebe-hero::before {{
     content: ''; position: absolute; inset: 0; pointer-events: none;
     background-image: url('{PATTERN_B64}');
