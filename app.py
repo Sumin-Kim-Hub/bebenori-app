@@ -640,24 +640,25 @@ def get_chroma(df: pd.DataFrame):
 def get_llm():
     try:
         from openai import OpenAI
+        api_key = st.secrets.get("HF_TOKEN", "")
         return OpenAI(
-            base_url="https://router.huggingface.co/hf-inference/v1",
-            api_key=HF_TOKEN,
+            base_url="https://api-inference.huggingface.co/v1",
+            api_key=api_key,
         )
-    except ImportError:
+    except Exception:
         return None
 
 
 def llm_chat(client, messages: list, max_tokens: int = 400) -> str:
-    if client is None:
-        return "AI 클라이언트 초기화 실패. HF_TOKEN을 확인해 주세요! 🌸"
+    if client is None or not client.api_key:
+        return "AI 클라이언트 초기화 실패. Secrets에 HF_TOKEN이 있는지 확인해 주세요! 🌸"
     try:
         r = client.chat.completions.create(
-            # 👇 'mistralai/'라는 경로까지 정확히 포함해야 합니다!
-            model="mistralai/Mistral-7B-Instruct-v0.2", 
+            # 3. 모델 이름 재확인 (v0.2가 유료 전용으로 바뀌었을 수 있으니 v0.3이나 대체 모델 추천)
+            model="mistralai/Mistral-7B-Instruct-v0.3", 
             messages=messages,
             max_tokens=max_tokens,
-            temperature=0.72,
+            temperature=0.7,
         )
         return r.choices[0].message.content.strip()
     except Exception as e:
