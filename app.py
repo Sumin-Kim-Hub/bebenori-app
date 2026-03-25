@@ -71,8 +71,8 @@ PLACES_CSV   = "places.csv"
 FEATURES_CSV = "place_features.csv"
 REVIEWS_CSV  = "review_docs.csv"
 DEV_CSV      = "baby_development_final.csv"
-LOGO_FILE    = "logo.jpg"
-PATTERN_FILE = "pattern.png"
+LOGO_FILE    = "logo.jpg.jpg"
+PATTERN_FILE = "pattern.png.jpg"
 CHROMA_DIR   = "./bebenori_db"
 FALLBACK_IMG = "https://images.unsplash.com/photo-1587654780291-39c9404d746b?auto=format&fit=crop&w=800&q=80"
 
@@ -629,7 +629,7 @@ def get_llm():
     try:
         from openai import OpenAI
         return OpenAI(
-            base_url="https://api-inference.huggingface.co/models/Qwen/Qwen2.5-72B-Instruct/v1/",
+            base_url="https://api-inference.huggingface.co/v1/",
             api_key=HF_TOKEN,
         )
     except ImportError:
@@ -641,7 +641,8 @@ def llm_chat(client, messages: list, max_tokens: int = 400) -> str:
         return "AI 클라이언트 초기화 실패. HF_TOKEN을 확인해 주세요! 🌸"
     try:
         r = client.chat.completions.create(
-            model="Qwen/Qwen2.5-72B-Instruct",
+            # 안정적인 무료 모델로 변경
+            model="HuggingFaceH4/zephyr-7b-beta", 
             messages=messages,
             max_tokens=max_tokens,
             temperature=0.72,
