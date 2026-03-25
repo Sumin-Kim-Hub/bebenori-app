@@ -127,16 +127,19 @@ html, body, [class*="css"] {{
 [data-testid="stSidebar"] .stRadio label {{ font-weight: 800 !important; }}
 
 /* ── 히어로 헤더 ───────────────────────────────────────── */
-.bebe-hero {{
-    background: linear-gradient(135deg,#FFFDE7 0%,#F1F8E9 50%,#E8F5E9 100%);
+.bebe-hero {
+    /* 이미지를 배경으로 넣고, 글씨가 잘 보이게 하얀색 필터를 살짝 깔았어요 */
+    background-image: linear-gradient(rgba(255,255,255,0.4), rgba(255,255,255,0.4)), url('{LOGO_B64}');
+    background-size: cover;      /* 이미지가 칸에 꽉 차게 */
+    background-position: center; /* 이미지 중앙 맞춤 */
     border-radius: 0 0 52px 52px;
-    padding: 28px 36px 36px;
+    padding: 50px 36px;
     margin: -1rem -1rem 0;
     box-shadow: 0 8px 28px rgba(100,150,80,.15);
-    display: flex; align-items: center; gap: 26px;
+    display: flex; align-items: center; justify-content: center; gap: 26px;
     border-bottom: 2px dashed #C5E1A5;
     position: relative; overflow: hidden;
-}}
+}
 .bebe-hero::before {{
     content: ''; position: absolute; inset: 0; pointer-events: none;
     background-image: url('{PATTERN_B64}');
@@ -989,7 +992,6 @@ total_dist    = df["district"].nunique()
 
 st.markdown(f"""
 <div class="bebe-hero">
-  <img class="hero-logo" src="{LOGO_B64}" alt="베베노리 로고">
   <div class="hero-text">
     <div class="hero-title">🖍 베베노리</div>
     <div class="hero-sub">
