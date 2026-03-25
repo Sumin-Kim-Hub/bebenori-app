@@ -653,8 +653,8 @@ def llm_chat(client, messages: list, max_tokens: int = 400) -> str:
         return "AI 클라이언트 초기화 실패. HF_TOKEN을 확인해 주세요! 🌸"
     try:
         r = client.chat.completions.create(
-            # 안정적인 무료 모델로 변경
-            model="HuggingFaceH4/zephyr-7b-beta", 
+            # 👇 'mistralai/'라는 경로까지 정확히 포함해야 합니다!
+            model="mistralai/Mistral-7B-Instruct-v0.2", 
             messages=messages,
             max_tokens=max_tokens,
             temperature=0.72,
