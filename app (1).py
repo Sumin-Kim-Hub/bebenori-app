@@ -137,10 +137,6 @@ html, body, [class*="css"] {{
     display: flex; flex-wrap: wrap; gap: 7px;
     margin: 16px 0 10px; align-items: center;
 }}
-.quick-label {{
-    font-size: .73em; font-weight: 800; color: #BCAAA4;
-    margin-right: 3px; white-space: nowrap;
-}}
 .qtag {{
     background: rgba(255,255,255,.88); border: 1.5px solid #FFE082;
     color: #8B6914; font-size: .76em; font-weight: 800;
